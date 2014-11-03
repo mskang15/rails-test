@@ -1,0 +1,48 @@
+<% if @user.errors.any? || @profile.errors.any? %>
+	<div class="alert">
+		<% [@profile, @user].each do |resource| %>
+			<% resource.errors.full_messages.each do |error| %>
+				<p><%= error %></p>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
+
+<div class="row-fluid">
+	<div class="span6">
+<%= form_for @user do |f| %>
+	<%= fields_for @profile do |field| %>
+	<p>
+		<%= field.label :name %>
+		<%= field.text_field :name %>
+	</p>
+	<p>
+		<%= field.label :age %>
+		<%= field.text_field :age %>
+	</p>
+	<% end %>
+	<p>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</p>
+	<p>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</p>
+	<p>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</p>
+	<p class="actions">
+		<%= f.submit %>
+		<%= link_to 'Cancel', root_url %>
+	</p>
+	<% end %>
+	</div>
+	<div class="span6">
+		<p>
+			<%= image_tag @user.profile.avatar.url, alt: @user.email %>
+			<%= link_to 'Change Avatar', edit_avatar_path(@user), class: 'btn' %> 
+		</p>
+	</div>
+</div>

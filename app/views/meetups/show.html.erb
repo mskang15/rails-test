@@ -1,0 +1,23 @@
+<section class="meetups">
+	<h2><%= meetup.name %></h2>
+	<h3>Location</h3>
+	<%= meetup.address %>
+	<%= "#{meetup.city}, #{meetup.state} #{meetup.zip}" %>
+
+	<h3>Date & Time</h3>
+	<p><strong>Starts at</strong> <%= meetup.starts_at %></p>
+	<p><strong>Ends at</strong> <%= meetup.ends_at %></p>
+
+	<h3>Description</h3>
+	<p><% meetup.description %></p>
+	</section>	
+
+	<div class="rsvp-info">
+		<%= render :partial => 'rsvp', locals: {meetup: meetup } %>
+	</div>
+	<% if can? :manage, meetup %>
+	<p class="actions">
+		<%= link_to 'Edit', edit_meetup_path(meetup) %>
+		<%= link_to 'Delete', meetup, confirm: 'Are you sure', method='delete' %>
+	</p>
+	<% end %>

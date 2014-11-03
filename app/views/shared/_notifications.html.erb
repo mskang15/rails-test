@@ -1,0 +1,8 @@
+<% [:error, :alert, :success, :info].each do |type| %>
+	<% unless flash[type].blank? %>
+		<div class="alert alert-<%= type %>">
+			<a class="close" data-dismiss="alert">x</a>
+			<p><%= flash[type] %></p>
+		</div>
+	<% end %>
+<% end %>

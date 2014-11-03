@@ -1,0 +1,22 @@
+<div class="avatar-form">
+	<%= form_for @user.profile, url: avatar_path(@user), html: {multipart: true} do |f| %>
+	<p>
+		<%= f.label :avatar, 'Upload New Avatar' %>
+		<%= f.file_field :avatar %>
+	</p>
+	<p class="actions">
+		<%= f.submit 'Upload Avatar', class: 'btn' %>
+		<%= link_to 'Cancel', edit_user_path(@user), class: 'btn' %>
+	</p>
+
+	<% end %>
+
+	<hr>
+
+	<% if @user.profile.avatar? %>
+		<%= image_tag @user.profile.avatar.url, class: 'avatar-thumb' %>
+		<%= link_to 'Delete My Avatar', avatar_path(@user), class: 'btn', method: 'delete' %>
+	<% else %>
+		<p>No Avatar Set!</p>
+	<% end %>
+</div>

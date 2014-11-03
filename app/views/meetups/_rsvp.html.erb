@@ -1,0 +1,9 @@
+<div class="well">
+	<% if current_user && current_user.rsvped_for_meetup?(meetup) %>
+		<p>You are going to this meetup!</p>
+		<p><%= link_to 'Cancel RSVP', rsvp_meetup_path(meetup), method: 'delete' %></p>
+	<% else %>
+		<p>Would you like to attend this meetup?</p>
+		<p><%= link_to 'RSVP for this meetup', rsvp_meetup_path(meetup), method: 'post' %></p>
+	<% end %>
+</div>

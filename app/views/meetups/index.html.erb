@@ -1,0 +1,13 @@
+<div class="meetups">
+	<h1>Meetups</h1>
+	<% if @meetups.present? %>
+		<%= render @meetups %>
+	<% else %>
+		<p>Sorry! No meetups yet :( </p>
+	<% end %>
+	<% if can? :manage, Meetup.new %>
+	<p class="actions">
+		<%= link_to 'Add New Meetup', new_meetup_path %>
+	</p>
+	<% end %>
+</div>
